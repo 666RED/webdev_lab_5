@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>My Books</title>
+	</head>
+	<body>
+		<script>
+			fetch("./books.json")
+				.then((res) => res.json())
+				.then((data) => {
+					const books = data.books;
+					const genreArr = [];
+
+					books.forEach((book) => {
+						book.genres.forEach((genre) => {
+							if (!genreArr.includes(genre)) {
+								genreArr.push(genre);
+							}
+						});
+					});
+
+					console.log(`Title of first book: ${books[0].title}`);
+					console.log(`Author of second book: ${books[1].author}`);
+					console.log(`Genres of all books: ${genreArr}`);
+				});
+		</script>
+	</body>
+</html>
